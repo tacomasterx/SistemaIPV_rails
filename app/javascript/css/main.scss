@@ -1,0 +1,110 @@
+@import '~bootstrap/scss/bootstrap';
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid green;
+    padding: 5px;
+    text-align: right;
+}
+
+th {
+    text-align: left;
+    background: green;
+    color:#fff;
+  }
+
+/* th.opciones, td.opciones{
+
+}*/
+
+table.totales{
+    width: 21%;
+    position: absolute;
+    right: 1.2%;
+}
+table.titulos{
+    width: 20%;
+    position: relative;
+    left:0%;
+}
+table.ultima-venta{
+width: 95%;
+}
+tr.clickeable{
+cursor: pointer;
+color: White;
+background-color: #004F00;
+}
+td.clickeable{
+cursor: pointer;
+color: White;
+background-color: #004F00;
+}      td.borrable{        cursor: pointer;        color: White;        background-color: #004F00;      }      td.borrable:hover{        color: White;        background-color: Red;      }
+td.clickeable:hover{
+color: Black;
+background-color: Green;
+}
+tr.clickeable:hover{
+color: Black;
+background-color: Cyan;
+}      td.borrable:hover{        color: White;        background-color: Red;      }
+#profile{
+font-size:2em;
+
+}
+.iconos_test {
+  cursor: pointer;
+  font-size:1em;
+  color:Gray;
+  padding:4px;
+}
+.iconos_test:hover {
+  color:#004F00;
+}
+.titulo-tabla{
+text-align: center;
+}
+td.ultima-venta{
+text-align: left;
+}
+.button {
+background-color: #4CAF50;
+border: 2px solid #4CAF50;
+color: white;
+padding: 16px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 36px;
+margin: 4px 2px;
+-webkit-transition-duration: 0.4s;
+transition-duration: 0.4s;
+cursor: pointer;
+}
+.button:hover {
+background-color: white;
+color: black;
+}
+.button-avg{
+background-color: #004F00;
+color: white;
+border: 2px solid #004F00;
+}
+.button-avg:hover {
+background-color: white;
+color: black;
+}
+.index-vender{
+background-color: #004F00;
+color: white;
+border: 2px solid #004F00;
+width: 90%;
+height: 100%;
+}
+.index-vender:hover {
+background-color: white;
+color: black;
+}

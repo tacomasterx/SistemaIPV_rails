@@ -1,0 +1,76 @@
+<% if user_signed_in? %>
+<div class="container-fluid">
+<div class="row" style="padding-top: 5px;">
+		<div class="col-md-10">
+    <span>
+						<h3><%= image_tag ("logo002.jpg"), height:50  %>
+			      <b id="nombreTienda" style="text-indent: 1cm;"> Papelería Sin Nombre </b>
+						<br>
+            <b id="welcome" style="text-indent: 1cm;">Bienvenido  <%= current_user.email %>  </b>
+						</h3>
+		</span>
+
+		</div>
+		<div class="col-md-2">
+			<h3>
+         <div id="profile">
+				 	<%= link_to root_path  do %>
+					 <%= fa_icon "cog",   class: "iconos_test" %>
+					 <% end %>
+				 	<%= link_to root_path  do %>
+					 <%= fa_icon "question",   class: "iconos_test" %>
+				 	<% end %>
+					<%= link_to destroy_user_session_path, method: :delete do %>
+  			 		<%= fa_icon "sign-out",   class: "iconos_test" %>
+					<% end %>
+          </div>
+			</h3>
+		</div>
+	</div>
+
+
+	<div class="row">
+	<div class="col-md-3">
+  <ul class="nav flex-column">
+	<li class="nav-item">
+		<a class="nav-link active" href="/index.php">Inicio</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/ventas/vender.php">Vender</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="/ventas/index.php">Historial</a>
+  </li>
+  <li class="nav-item">
+		<a class="nav-link" href="/inventario/index.php">Productos</a>
+	</li>
+   			<li class="nav-item">
+	 				<a class="nav-link" href="/clientes/index.php">Clientes</a>
+	 			</li>
+   			<li class="nav-item">
+	 				<a class="nav-link" href="/sucursales/index.php">Empleados</a>
+	 			</li>
+	 		</ul>
+	 	</div>
+	 	<div class="col-md-9">
+	 		<ul class="nav">
+	 			<li class="nav-item">
+	 				<a class="nav-link active" href="#">Inicio</a>
+	 			</li>
+	 			<li class="nav-item">
+	 				<a class="nav-link" href="/ventas/vender.php">Vender</a>
+	 			</li>
+	 			<li class="nav-item">
+	 				<a class="nav-link" href="/ventas/index.php">Historial</a>
+	 			</li>
+   			<li class="nav-item">
+	 				<a class="nav-link" href="/inventario/index.php">Productos</a>
+	 			</li>
+   			<li class="nav-item">
+	 				<a class="nav-link" href="/clientes/index.php">Clientes</a>
+	 			</li>
+   			<li class="nav-item">
+	 				<a class="nav-link" href="/sucursales/index.php">Empleados</a>
+	 			</li>
+	 		</ul>
+<% end %>
