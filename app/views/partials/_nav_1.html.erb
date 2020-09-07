@@ -31,46 +31,56 @@
 
 	<div class="row">
 	<div class="col-md-3">
-  <ul class="nav flex-column">
-	<li class="nav-item">
-		<a class="nav-link active" href="/index.php">Inicio</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="/ventas/vender.php">Vender</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="/ventas/index.php">Historial</a>
-  </li>
-  <li class="nav-item">
-		<a class="nav-link" href="/inventario/index.php">Productos</a>
-	</li>
-   			<li class="nav-item">
-	 				<a class="nav-link" href="/clientes/index.php">Clientes</a>
-	 			</li>
-   			<li class="nav-item">
-	 				<a class="nav-link" href="/sucursales/index.php">Empleados</a>
-	 			</li>
-	 		</ul>
-	 	</div>
-	 	<div class="col-md-9">
+	  <ul class="nav flex-column">
+			<li class="nav-item">
+			<% if current_page?(controller: :home, action: :index) then %>
+				<%= link_to "Inicio", root_path, class: "nav-link active" %>
+			<% else %>
+				<%= link_to "Inicio", root_path, class: "nav-link" %>
+			<% end %>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/">Vender</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/">Historial</a>
+		  </li>
+		  <li class="nav-item">
+			<% if (params[:controller] == 'products' || params[:controller] == 'product_types' || params[:controller] == 'product_statuses') && %w(index new edit show).include?(params[:action]) then %>
+				<%= link_to "Productos", products_path, class: "nav-link active" %>
+			<% else %>
+				<%= link_to "Productos", products_path, class: "nav-link" %>
+			<% end %>
+			</li>
+			<li class="nav-item">
+				<%= link_to "Inventario", inventory_items_path, class: "nav-link" %>
+			</li>
+			<li class="nav-item">
+				<%= link_to "Clientes", employees_path, class: "nav-link" %>
+			</li>
+			<li class="nav-item">
+				<%= link_to "Empleados", employees_path, class: "nav-link" %>
+			</li>
+			<li class="nav-item">
+				<%= link_to "Sucursales", shops_path, class: "nav-link" %>
+			</li>
+		</ul>
+	</div>
+ 	<div class="col-md-9">
 	 		<ul class="nav">
-	 			<li class="nav-item">
-	 				<a class="nav-link active" href="#">Inicio</a>
-	 			</li>
-	 			<li class="nav-item">
-	 				<a class="nav-link" href="/ventas/vender.php">Vender</a>
-	 			</li>
-	 			<li class="nav-item">
-	 				<a class="nav-link" href="/ventas/index.php">Historial</a>
-	 			</li>
-   			<li class="nav-item">
-	 				<a class="nav-link" href="/inventario/index.php">Productos</a>
-	 			</li>
-   			<li class="nav-item">
-	 				<a class="nav-link" href="/clientes/index.php">Clientes</a>
-	 			</li>
-   			<li class="nav-item">
-	 				<a class="nav-link" href="/sucursales/index.php">Empleados</a>
-	 			</li>
+				<% if (params[:controller] == 'products' || params[:controller] == 'product_types' || params[:controller] == 'product_statuses') && %w(index new edit show).include?(params[:action]) then %>
+						<li class="nav-item">
+							<%= link_to "Lista", products_path, class: "nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "Nuevo producto", new_product_path, class: "nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "Tipos de producto", product_types_path, class: "nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "Estados de producto", product_statuses_path, class: "nav-link" %>
+						</li>
+				<% end %>
 	 		</ul>
-<% end %>
+	<% end %>

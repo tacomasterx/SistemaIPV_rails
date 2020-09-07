@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Artículos del inventario</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Sucursal</th>
+      <th>Producto</th>
+      <th>Estado</th>
+      <th>Costo original</th>
+      <th>Fecha creación</th>
+      <th>Fecha modificación</th>
+      <th>ID del empleado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inventory_items.each do |inventory_item| %>
+      <tr>
+        <td><%= inventory_item.id %></td>
+        <td><%= inventory_item.shop_id %></td>
+        <td><%= inventory_item.product.name %></td>
+        <td><%= inventory_item.product_status.name %></td>
+        <td><%= inventory_item.original_cost %></td>
+        <td><%= inventory_item.created_at %></td>
+        <td><%= inventory_item.updated_at %></td>
+        <td><%= inventory_item.employee_id %></td>
+        <td><%= link_to 'Show', inventory_item %></td>
+        <td><%= link_to 'Edit', edit_inventory_item_path(inventory_item) %></td>
+        <td><%= link_to 'Destroy', inventory_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Inventory Item', new_inventory_item_path, class: "button btn-avg" %>

@@ -5,7 +5,7 @@
 
       <ul>
         <% product.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li style="font-color: white;"><%= message %></li>
         <% end %>
       </ul>
     </div>
@@ -28,42 +28,42 @@
 
   <div class="field">
     <%= form.label :quantity %>
-    <%= form.text_field :quantity %>
+    <%= form.number_field :quantity %>
   </div>
 
   <div class="field">
     <%= form.label :weight %>
-    <%= form.text_field :weight %>
+    <%= form.number_field :weight %>
   </div>
 
   <div class="field">
     <%= form.label :price_unit %>
-    <%= form.text_field :price_unit %>
+    <%= form.number_field :price_unit %>
   </div>
 
   <div class="field">
     <%= form.label :profit %>
-    <%= form.text_field :profit %>
+    <%= form.number_field :profit %>
   </div>
 
   <div class="field">
     <%= form.label :price_2 %>
-    <%= form.text_field :price_2 %>
+    <%= form.number_field :price_2 %>
   </div>
 
   <div class="field">
     <%= form.label :price_3 %>
-    <%= form.text_field :price_3 %>
+    <%= form.number_field :price_3 %>
   </div>
 
   <div class="field">
     <%= form.label :price_4 %>
-    <%= form.text_field :price_4 %>
+    <%= form.number_field :price_4 %>
   </div>
 
   <div class="field">
     <%= form.label :price_5 %>
-    <%= form.text_field :price_5 %>
+    <%= form.number_field :price_5 %>
   </div>
 
   <div class="field">
@@ -73,7 +73,12 @@
 
   <div class="field">
     <%= form.label :sku %>
-    <%= form.text_field :sku %>
+    <%= form.number_field :sku %>
+  </div>
+
+  <div class="field">
+    <%= form.label :product_type_id %>
+    <%= form.number_field :product_type_id %>
   </div>
 
   <div class="actions">

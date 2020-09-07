@@ -10,7 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_05_002652) do
+ActiveRecord::Schema.define(version: 2020_09_06_001724) do
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.string "last_name_1"
+    t.string "last_name_2"
+    t.string "rfc"
+    t.string "address"
+    t.integer "phone_home"
+    t.integer "phone_mobile"
+    t.string "charge"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "shop_id", default: 1, null: false
+    t.index ["shop_id"], name: "index_employees_on_shop_id"
+  end
+
+  create_table "inventory_items", force: :cascade do |t|
+    t.float "original_cost"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "shop_id", null: false
+    t.integer "product_id", null: false
+    t.integer "product_status_id", null: false
+    t.integer "employee_id", null: false
+    t.index ["employee_id"], name: "index_inventory_items_on_employee_id"
+    t.index ["product_id"], name: "index_inventory_items_on_product_id"
+    t.index ["product_status_id"], name: "index_inventory_items_on_product_status_id"
+    t.index ["shop_id"], name: "index_inventory_items_on_shop_id"
+  end
+
+  create_table "product_statuses", force: :cascade do |t|
+    t.string "name"
+    t.integer "managable"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "product_types", force: :cascade do |t|
     t.string "name"
@@ -34,6 +70,17 @@ ActiveRecord::Schema.define(version: 2020_09_05_002652) do
     t.integer "sku"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "product_type_id", null: false
+    t.index ["product_type_id"], name: "index_products_on_product_type_id"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "name"
+    t.string "pseudonym"
+    t.string "address"
+    t.string "city"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,8 +91,17 @@ ActiveRecord::Schema.define(version: 2020_09_05_002652) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "employee_id", default: 1, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["employee_id"], name: "index_users_on_employee_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "employees", "shops"
+  add_foreign_key "inventory_items", "employees"
+  add_foreign_key "inventory_items", "product_statuses"
+  add_foreign_key "inventory_items", "products"
+  add_foreign_key "inventory_items", "shops"
+  add_foreign_key "products", "product_types"
+  add_foreign_key "users", "employees"
 end

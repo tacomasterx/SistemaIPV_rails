@@ -1,5 +1,6 @@
 class ProductTypesController < ApplicationController
   before_action :set_product_type, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /product_types
   # GET /product_types.json
