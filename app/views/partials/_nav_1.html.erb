@@ -40,10 +40,10 @@
 			<% end %>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/">Vender</a>
+				<%= link_to "Vender", new_sale_path, class: "nav-link" %>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/">Historial</a>
+				<%= link_to "Historial de ventas", sales_path, class: "nav-link" %>
 		  </li>
 		  <li class="nav-item">
 			<% if (params[:controller] == 'products' || params[:controller] == 'product_types' || params[:controller] == 'product_statuses') && %w(index new edit show).include?(params[:action]) then %>
@@ -66,7 +66,8 @@
 			</li>
 		</ul>
 	</div>
- 	<div class="col-md-9">
+	<% unless (params[:controller] == 'sales' ) && %w( edit ).include?(params[:action]) then %>
+	 	<div class="col-md-9">
 	 		<ul class="nav">
 				<% if (params[:controller] == 'products' || params[:controller] == 'product_types' || params[:controller] == 'product_statuses') && %w(index new edit show).include?(params[:action]) then %>
 						<li class="nav-item">
@@ -83,4 +84,7 @@
 						</li>
 				<% end %>
 	 		</ul>
+	<% else %>
+		<div class="col-md-3">
 	<% end %>
+<% end %>

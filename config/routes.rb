@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  #get 'transactions/create', to: "transactions#create"
+  #get 'transactions/update', to: "transactions#update"
+  resources :sales
   resources :inventory_items
   resources :employees
   resources :shops

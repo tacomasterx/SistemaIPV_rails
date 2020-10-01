@@ -1,0 +1,14 @@
+<h1>Editing Sale <%= @sale.id %></h1>
+
+<%= render 'sell', sale: @sale, transactions: @transactions %>
+
+<p id="hola_mundo"></p>
+
+<%= link_to 'Show', @sale %> |
+<%= link_to 'Back', sales_path %>
+
+</div>
+<div class="col-md-6">
+  <div class="" id="sales_qeue_tables">
+    <%= render 'sales_qeue', sale: @sale, transactions: @transactions %>
+  </div>

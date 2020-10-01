@@ -1,11 +1,13 @@
 class InventoryItemsController < ApplicationController
   before_action :set_inventory_item, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /inventory_items
   # GET /inventory_items.json
   def index
     @inventory_items = InventoryItem.all
-    #@inventory_items = current_user.employee.shop
+    # Para el modo inventario de tienda específica
+    # @inventory_items = InventoryItem.where(shop_id: Shop)
   end
 
   # GET /inventory_items/1

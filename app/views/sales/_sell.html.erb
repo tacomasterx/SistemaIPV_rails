@@ -1,0 +1,37 @@
+<%= form_with(model: sale, remote: true) do |form| %>
+  <% if sale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+
+      <ul>
+        <% sale.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= fields_for :transaction, sale.transactions.new do |transactions_fields| %>
+
+    <div class="field">
+      <%= form.label :inventory_item_id %>
+      <%= form.text_field :inventory_item_id %>
+    </div>
+
+  <% end %>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :discount %>
+    <%= form.select(:discount, options_for_select([['Precio normal',1], ['Precio 2',2], ['Precio 3',3], ['Precio 4',4], ['Precio 5',5]],1))  %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Agregar", class: "button button-concretar" %>
+  </div>
+
+<% end %>

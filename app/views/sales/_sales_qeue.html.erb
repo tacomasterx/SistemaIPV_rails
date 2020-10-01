@@ -1,0 +1,53 @@
+<h1>Venta # <%= @sale.id %></h1>
+
+<table  id="colaProductos" class="fixed_header">
+  <thead>
+    <tr>
+      <th >ID</th>
+      <th>Producto</th>
+      <th hidden>Inventario</th>
+      <th>Precio</th>
+      <th>Descuento</th>
+      <th>Importe</th>
+      <th>Cancelar</th>
+    </tr>
+  </thead>
+  <tbody id="colaVenta">
+    <% amount_total = 0 %>
+    <% @transactions.each do |transaction| %>
+    <% sell_price = transaction.inventory_item.product.price_unit + (transaction.inventory_item.product.price_unit * transaction.inventory_item.product.profit)/100 %>
+    <% amount_total += transaction.amount %>
+    <tr>
+      <td><%= transaction.inventory_item.product_id %></td>
+      <td><%= transaction.inventory_item.product.name %></td>
+      <td hidden><%= transaction.id %></td>
+      <td><%= sell_price %></td>
+      <td><%= sell_price - transaction.amount %></td>
+      <td><%= transaction.amount %></td>
+      <td> <button type="button" value="-" class="button button-remove" onclick="borrarRegistroCola(\''.$fila['inventario_id'].'\',this)">-</button></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<table id="totales" class="totales">
+  <tr>
+    <td>Subtotal</td>
+    <td id="subtotal"><%= @sale.amount %></td>
+  </tr>
+  <tr>
+    <td>Descuento</td>
+    <td id="totalDescuentos"><%= @sale.discount %></td>
+  </tr>
+  <tr>
+    <td>Total</td>
+    <td id="total"><%= amount_total %></td>
+  </tr>
+  <tr>
+    <td>Pago</td>
+    <td id="pago">$0</td>
+  </tr>
+  <tr>
+    <td>Cambio</td>
+    <td id="cambio"><%= 0 - amount_total %></td>
+  </tr>
+</table>

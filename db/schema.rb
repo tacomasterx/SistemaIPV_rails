@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_06_001724) do
+ActiveRecord::Schema.define(version: 2020_09_07_234008) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
@@ -39,6 +39,14 @@ ActiveRecord::Schema.define(version: 2020_09_06_001724) do
     t.index ["product_id"], name: "index_inventory_items_on_product_id"
     t.index ["product_status_id"], name: "index_inventory_items_on_product_status_id"
     t.index ["shop_id"], name: "index_inventory_items_on_shop_id"
+  end
+
+  create_table "payment_details", force: :cascade do |t|
+    t.float "payment"
+    t.integer "sale_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sale_id"], name: "index_payment_details_on_sale_id"
   end
 
   create_table "product_statuses", force: :cascade do |t|
@@ -74,6 +82,26 @@ ActiveRecord::Schema.define(version: 2020_09_06_001724) do
     t.index ["product_type_id"], name: "index_products_on_product_type_id"
   end
 
+  create_table "sale_sessions", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "employee_id", null: false
+    t.integer "sale_id", null: false
+    t.index ["employee_id"], name: "index_sale_sessions_on_employee_id"
+    t.index ["sale_id"], name: "index_sale_sessions_on_sale_id"
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.float "amount"
+    t.float "discount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "employee_id", null: false
+    t.integer "shop_id", null: false
+    t.index ["employee_id"], name: "index_sales_on_employee_id"
+    t.index ["shop_id"], name: "index_sales_on_shop_id"
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string "name"
     t.string "pseudonym"
@@ -81,6 +109,16 @@ ActiveRecord::Schema.define(version: 2020_09_06_001724) do
     t.string "city"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.float "amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "sale_id", null: false
+    t.integer "inventory_item_id", null: false
+    t.index ["inventory_item_id"], name: "index_transactions_on_inventory_item_id"
+    t.index ["sale_id"], name: "index_transactions_on_sale_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -102,6 +140,13 @@ ActiveRecord::Schema.define(version: 2020_09_06_001724) do
   add_foreign_key "inventory_items", "product_statuses"
   add_foreign_key "inventory_items", "products"
   add_foreign_key "inventory_items", "shops"
+  add_foreign_key "payment_details", "sales"
   add_foreign_key "products", "product_types"
+  add_foreign_key "sale_sessions", "employees"
+  add_foreign_key "sale_sessions", "sales"
+  add_foreign_key "sales", "employees"
+  add_foreign_key "sales", "shops"
+  add_foreign_key "transactions", "inventory_items"
+  add_foreign_key "transactions", "sales"
   add_foreign_key "users", "employees"
 end

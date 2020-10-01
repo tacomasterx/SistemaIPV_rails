@@ -1,5 +1,6 @@
 class ProductStatusesController < ApplicationController
   before_action :set_product_status, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /product_statuses
   # GET /product_statuses.json
