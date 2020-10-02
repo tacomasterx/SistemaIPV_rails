@@ -94,18 +94,19 @@ class SalesController < ApplicationController
   end
 
   def concrete
-    @payment_detail = PaymentDetail.new()
-    respond_to do |format|
-      if @payment_detail.save
-        format.html { redirect_to edit_sale_path(@payment_detail), notice: 'Venta concluída.' }
-        format.json { render :show, status: :ok, location: @payment_detail }
-        format.js
-      else
-        format.html { render :edit }
-        format.json { render json: @payment_detail.errors, status: :unprocessable_entity }
-        format.js
-      end
-    end
+    puts "\n\n\n\n\n\nConcrete\n\n\n\n\n\n\n"
+    # @payment_detail = PaymentDetail.new()
+    # respond_to do |format|
+    #   if @payment_detail.save
+    #     format.html { redirect_to edit_sale_path(@payment_detail), notice: 'Venta concluída.' }
+    #     format.json { render :show, status: :ok, location: @payment_detail }
+    #     format.js
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @payment_detail.errors, status: :unprocessable_entity }
+    #     format.js
+    #   end
+    # end
   end
 
   private

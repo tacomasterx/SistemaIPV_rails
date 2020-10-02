@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   #get 'transactions/create', to: "transactions#create"
   #get 'transactions/update', to: "transactions#update"
-  resources :sales
+  resources :sales do
+    #POST "sales/concrete", to: "sales#concrete"
+  end
   resources :inventory_items
   resources :employees
   resources :shops
