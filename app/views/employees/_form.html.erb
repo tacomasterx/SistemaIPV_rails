@@ -51,9 +51,14 @@
     <%= form.text_field :charge %>
   </div>
 
+  <% options = [['Seleccione',0]] %>
+  <% Shop.all.each do |shop| %>
+    <% options.push([shop.name,shop.id]) %>
+  <% end %>
+
   <div class="field">
     <%= form.label :shop_id %>
-    <%= form.number_field :shop_id %>
+    <%= form.select( :shop_id, options_for_select(options, @employee.shop_id) ) %>
   </div>
 
   <div class="actions">

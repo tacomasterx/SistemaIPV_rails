@@ -6,23 +6,23 @@
 </p>
 
 <p>
+  <strong>Type:</strong>
+  <%= @product.product_type.name %>
+</p>
+
+<p>
   <strong>Description:</strong>
   <%= @product.description %>
 </p>
 
 <p>
-  <strong>Unit:</strong>
-  <%= @product.unit %>
-</p>
-
-<p>
   <strong>Quantity:</strong>
-  <%= @product.quantity %>
+  <%= @product.quantity.to_s + @product.unit %>
 </p>
 
 <p>
   <strong>Weight:</strong>
-  <%= @product.weight %>
+  <%= @product.weight.to_s + 'gr' %>
 </p>
 
 <p>

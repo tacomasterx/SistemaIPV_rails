@@ -76,9 +76,14 @@
     <%= form.number_field :sku %>
   </div>
 
+  <% options = [['Seleccione',0]] %>
+  <% ProductType.all.each do |product| %>
+    <% options.push([product.name,product.id]) %>
+  <% end %>
+
   <div class="field">
     <%= form.label :product_type_id %>
-    <%= form.number_field :product_type_id %>
+    <%= form.select(:product_type_id, options_for_select(options, @product.product_type_id))  %>
   </div>
 
   <div class="actions">
