@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   #get 'transactions/create', to: "transactions#create"
   #get 'transactions/update', to: "transactions#update"
-  resources :sales do
-    #POST "sales/concrete", to: "sales#concrete"
-  end
+  resources :sales
+    #patch "sales/concrete", to: "sales#concrete"
+
   resources :inventory_items
   resources :employees
   resources :shops
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # ruby .\bin\webpack-dev-server
   devise_for :users
 
+  post "payment_details/create", to: "payment_details#create"
 
   get 'home/index', to: "home#index"
   root to: "home#index"

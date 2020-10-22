@@ -25,6 +25,7 @@ class SalesController < ApplicationController
       redirect_to new_sale_path
     end
       @transactions = @sale.transactions.all
+      @payment_detail = PaymentDetail.new
   end
 
   # POST /sales
@@ -60,11 +61,11 @@ class SalesController < ApplicationController
             if @sale.update(amount: sale_amount, discount: sale_discount)
               format.html { redirect_to edit_sale_path(@sale), notice: 'Sale was successfully updated.' }
               format.json { render :show, status: :ok, location: @sale }
-              format.js
+              #format.js
             else
               format.html { render :edit }
               format.json { render json: @sale.errors, status: :unprocessable_entity }
-              format.js
+              #format.js
             end
           end
     when '1'
@@ -91,22 +92,6 @@ class SalesController < ApplicationController
       format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def concrete
-    puts "\n\n\n\n\n\nConcrete\n\n\n\n\n\n\n"
-    # @payment_detail = PaymentDetail.new()
-    # respond_to do |format|
-    #   if @payment_detail.save
-    #     format.html { redirect_to edit_sale_path(@payment_detail), notice: 'Venta concluída.' }
-    #     format.json { render :show, status: :ok, location: @payment_detail }
-    #     format.js
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @payment_detail.errors, status: :unprocessable_entity }
-    #     format.js
-    #   end
-    # end
   end
 
   private
@@ -159,6 +144,8 @@ class SalesController < ApplicationController
         return '2'
       end
     end
+
+
 
     def check_sale_session?
       if (current_user.employee.sale_sessions.any?) then

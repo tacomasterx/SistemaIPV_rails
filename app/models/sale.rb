@@ -11,7 +11,16 @@ class Sale < ApplicationRecord
   end
 
   def  destroy_sale_session
-    SaleSession.where(employee_id: current_user.employee_id).destroy_all
+    #SaleSession.where(employee_id: current_user.employee_id).destroy_all
   end
+
+  # def sell_inventory_items
+  #   inventory_items = self.inventory_items
+  #   inventory_items.each do |item|
+  #     unless item.update(product_status_id: 4) then
+  #       puts "\n\n#{item.errors}\n\n"
+  #     end
+  #   end
+  # end
 
 end
