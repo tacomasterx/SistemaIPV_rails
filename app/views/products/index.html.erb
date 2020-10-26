@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Type</th>
       <th>Description</th>
       <th>Quantity</th>
       <th>Unit</th>
@@ -27,6 +28,7 @@
       <tr>
         <td><%= product.name %></td>
         <td><%= product.description %></td>
+        <td><%= product.product_type.name %></td>
         <td><%= product.quantity %></td>
         <td><%= product.unit %></td>
         <td><%= product.weight.to_s + "gr" %></td>

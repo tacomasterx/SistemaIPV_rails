@@ -1,9 +1,59 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Original cost:</strong>
+  <strong>Producto:</strong>
+  <%= @inventory_item.product.name %>
+</p>
+
+<p>
+  <strong>Costo original:</strong>
   <%= @inventory_item.original_cost %>
 </p>
+
+<p>
+  <strong>Fecha de creación:</strong>
+  <%= @inventory_item.created_at %>
+</p>
+
+<p>
+  <strong>Fecha de modificación:</strong>
+  <%= @inventory_item.updated_at %>
+</p>
+
+<p>
+  <strong>Registrado por:</strong>
+  <%= @inventory_item.employee.name + " " + @inventory_item.employee.last_name_1 + " " + @inventory_item.employee.last_name_2 %>
+</p>
+
+<p>
+  <strong>Ubicado en:</strong>
+  <%= @inventory_item.shop.name %>
+</p>
+
+<p>
+  <strong>Estado del artículo:</strong>
+  <%= @inventory_item.product_status.name %>
+</p>
+
+
+<% if (@inventory_item.product_status_id == 4  ) then %>
+
+<p>
+  <strong>Vendido en la transacción:</strong>
+  <%= @inventory_item.sales.ids %>
+</p>
+
+<p>
+  <strong>Por:</strong>
+  <%= @inventory_item.sales.first.employee.name + " " + @inventory_item.sales.first.employee.last_name_1 + " " + @inventory_item.sales.first.employee.last_name_2 %>
+</p>
+
+<p>
+  <strong>En:</strong>
+  <%= @inventory_item.sales.first.updated_at %>
+</p>
+
+<% end %>
 
 <%= link_to 'Edit', edit_inventory_item_path(@inventory_item) %> |
 <%= link_to 'Back', inventory_items_path %>
