@@ -149,7 +149,7 @@ class SalesController < ApplicationController
 
     def check_sale_session?
       if (current_user.employee.sale_sessions.any?) then
-        redirect_to edit_sale_path(current_user.employee.sale_sessions.last)
+        redirect_to edit_sale_path(current_user.employee.sale_sessions.last.sale)
       end
     end
 
