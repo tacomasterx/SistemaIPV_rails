@@ -5,8 +5,13 @@
 <table>
   <thead>
     <tr>
-      <th>Amount</th>
-      <th>Discount</th>
+      <th>Venta #</th>
+      <th>Fecha de venta</th>
+      <th>Productos vendidos</th>
+      <th>Importe</th>
+      <th>Descuento</th>
+      <th>Sucursal</th>
+      <th>Vendido por</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,8 +19,19 @@
   <tbody>
     <% @sales.each do |sale| %>
       <tr>
+        <td><%= sale.id %></td>
+        <td>
+          <% if (sale.payment_details.any?) then %>
+            <%= sale.payment_details.first.created_at %>
+          <% else %>
+            <%= sale.created_at %>
+          <% end %>
+        </td>
+        <td><%= sale.transactions.count %></td>
         <td><%= sale.amount %></td>
-        <td><%= sale.discount %></td>
+        <td><%= sale.discount.round(2) %></td>
+        <td><%= sale.shop_id %></td>
+        <td><%= sale.employee.name + " " + sale.employee.last_name_1 %></td>
         <td><%= link_to 'Show', sale, target: :_blank %></td>
         <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
         <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
