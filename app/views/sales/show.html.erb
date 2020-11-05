@@ -8,7 +8,7 @@
 <p>
   <strong>Realizada en:</strong>
   <% if (@sale.payment_details.any?) then %>
-    <%= @sale.payment_details.first.created_at %>
+    <%= @sale.payment_details.last.created_at %>
   <% else %>
     <%= @sale.created_at %>
   <% end %>
@@ -68,7 +68,7 @@
     <td>Pago</td>
     <td id="pago">$
       <% if (@sale.payment_details.any?) then %>
-        <%= (@sale.payment_details.first.payment).round(2) %>
+        <%= (@sale.payment_details.last.payment).round(2) %>
       <% else %>
         <%= 0.round(2) %>
       <% end %>
@@ -78,7 +78,7 @@
     <td>Cambio</td>
     <td id="cambio">$
       <% if (@sale.payment_details.any?) then %>
-        <%= (@sale.payment_details.first.payment - amount_total).round(2) %>
+        <%= (@sale.payment_details.last.payment - amount_total).round(2) %>
       <% else %>
         <%= (0 - amount_total).round(2) %>
       <% end %>

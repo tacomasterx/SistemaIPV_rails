@@ -5,9 +5,9 @@ class InventoryItemsController < ApplicationController
   # GET /inventory_items
   # GET /inventory_items.json
   def index
-    @inventory_items = InventoryItem.all
     # Para el modo inventario de tienda específica
-    # @inventory_items = InventoryItem.where(shop_id: Shop)
+    #@inventory_items = InventoryItem.all
+     @inventory_items = InventoryItem.where(shop_id: current_user.employee.shop_id)
   end
 
   # GET /inventory_items/1
@@ -76,6 +76,11 @@ class InventoryItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  ###UTILIDADES
+# def revenue
+# end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

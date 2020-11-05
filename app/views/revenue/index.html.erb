@@ -1,0 +1,126 @@
+<p id="notice"><%= notice %></p>
+  <% # TODO: Seguir con esta madre %>
+<p>
+  <strong>Utilidad por sucursal</strong>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sucursal</th>
+      <th>Ventas</th>
+      <th>Artículos vendidos</th>
+      <th>Ingresos</th>
+      <th>Costos</th>
+      <th>Utilidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%
+        totals = {count: 0, amount: 0.0, cost: 0.0, revenue: 0.0}
+        @shops.each do |shop|
+    %>
+    <tr>
+      <td><%= shop.id %></td>
+      <td><%= shop.sales.count %></td>
+      <%
+          buffers = {count: 0, amount: 0.0, cost: 0.0, revenue: 0.0}
+          shop.sales.each do |sale|
+            sale.transactions.each do |transaction|
+              puts  transaction.amount
+              buffers[:amount] = buffers[:amount] + transaction.amount
+
+              puts  transaction.inventory_item.original_cost
+              buffers[:cost] = buffers[:cost] + transaction.inventory_item.original_cost
+
+              puts  (transaction.amount - transaction.inventory_item.original_cost)
+              buffers[:revenue] = buffers[:revenue] + (transaction.amount - transaction.inventory_item.original_cost)
+
+              puts transaction.id.to_s + " => buffers  =" + buffers.to_s
+            end
+            buffers[:count] = buffers[:count] + sale.transactions.count;
+          end
+          totals[:count] = totals[:count] + buffers[:count]
+          totals[:amount] = totals[:amount] + buffers[:amount]
+          totals[:cost] = totals[:cost] + buffers[:cost]
+          totals[:revenue] = totals[:revenue] + buffers[:revenue]
+       %>
+      <td><%= buffers[:count] %></td>
+      <td><%= buffers[:amount].round(2) %></td>
+      <td><%= buffers[:cost].round(2) %></td>
+      <td><%= buffers[:revenue].round(2) %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td>Total</td>
+      <td></td>
+      <td><%= totals[:count] %></td>
+      <td><%= totals[:amount].round(2) %></td>
+      <td><%= totals[:cost].round(2) %></td>
+      <td><%= totals[:revenue].round(2) %></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p>
+  <strong>Utilidad por venta</strong>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sucursal</th>
+      <th>Ventas</th>
+      <th>Artículos vendidos</th>
+      <th>Ingresos</th>
+      <th>Costos</th>
+      <th>Utilidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%
+        totals = {count: 0, amount: 0.0, cost: 0.0, revenue: 0.0}
+        @shops.each do |shop|
+
+            shop.sales.each do |sale|
+              buffers = {count: 0, amount: 0.0, cost: 0.0, revenue: 0.0}  %>
+              <tr>
+                <td><%= shop.id %></td>
+                <td><%= sale.id %></td>
+      <%      sale.transactions.each do |transaction|
+              puts  transaction.amount
+              buffers[:amount] = buffers[:amount] + transaction.amount
+
+              puts  transaction.inventory_item.original_cost
+              buffers[:cost] = buffers[:cost] + transaction.inventory_item.original_cost
+
+              puts  (transaction.amount - transaction.inventory_item.original_cost)
+              buffers[:revenue] = buffers[:revenue] + (transaction.amount - transaction.inventory_item.original_cost)
+
+              puts transaction.id.to_s + " => buffers  =" + buffers.to_s  %>
+      <%      end  %>
+      <%      buffers[:count] = buffers[:count] + sale.transactions.count  %>
+                <td><%= buffers[:count] %></td>
+                <td><%= buffers[:amount].round(2) %></td>
+                <td><%= buffers[:cost].round(2) %></td>
+                <td><%= buffers[:revenue].round(2) %></td>
+              </tr>
+              <%
+                  totals[:count] = totals[:count] + buffers[:count]
+                  totals[:amount] = totals[:amount] + buffers[:amount]
+                  totals[:cost] = totals[:cost] + buffers[:cost]
+                  totals[:revenue] = totals[:revenue] + buffers[:revenue]
+               %>
+      <%  end  %>
+    <% end %>
+    <tr>
+      <td>Total</td>
+      <td></td>
+      <td><%= totals[:count] %></td>
+      <td><%= totals[:amount].round(2) %></td>
+      <td><%= totals[:cost].round(2) %></td>
+      <td><%= totals[:revenue].round(2) %></td>
+    </tr>
+  </tbody>
+</table>

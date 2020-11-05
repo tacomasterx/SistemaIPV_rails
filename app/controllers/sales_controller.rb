@@ -131,8 +131,8 @@ class SalesController < ApplicationController
     end
 
     def create_transaction (product, price, sale)
-      if InventoryItem.where(product_id: product, product_status_id: 1).any? then
-        inventory_item = InventoryItem.where(product_id: product, product_status_id: 1).first
+      if InventoryItem.where(product_id: product, product_status_id: 1, shop_id: current_user.employee.shop_id).any? then
+        inventory_item = InventoryItem.where(product_id: product, product_status_id: 1, shop_id: current_user.employee.shop_id).first
         transaction = sale.transactions.new(amount: price, inventory_item_id: inventory_item.id)
         if transaction.save then
           inventory_item.update(product_status_id: 2)
