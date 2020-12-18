@@ -14,8 +14,8 @@
   <%= fields_for :transaction, sale.transactions.new do |transactions_fields| %>
 
     <div class="field">
-      <%= form.label :inventory_item_id %>
-      <%= form.text_field :inventory_item_id %>
+      <%= form.label :inventory_item_id, "Product id" %>
+      <%= form.text_field :inventory_item_id, required: 'required' %>
     </div>
 
   <% end %>

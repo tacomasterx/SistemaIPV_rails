@@ -27,16 +27,16 @@
           buffers = {count: 0, amount: 0.0, cost: 0.0, revenue: 0.0}
           shop.sales.each do |sale|
             sale.transactions.each do |transaction|
-              puts  transaction.amount
+              #puts  transaction.amount
               buffers[:amount] = buffers[:amount] + transaction.amount
 
-              puts  transaction.inventory_item.original_cost
+              #puts  transaction.inventory_item.original_cost
               buffers[:cost] = buffers[:cost] + transaction.inventory_item.original_cost
 
-              puts  (transaction.amount - transaction.inventory_item.original_cost)
+              #puts  (transaction.amount - transaction.inventory_item.original_cost)
               buffers[:revenue] = buffers[:revenue] + (transaction.amount - transaction.inventory_item.original_cost)
 
-              puts transaction.id.to_s + " => buffers  =" + buffers.to_s
+              #puts transaction.id.to_s + " => buffers  =" + buffers.to_s
             end
             buffers[:count] = buffers[:count] + sale.transactions.count;
           end
@@ -89,16 +89,16 @@
                 <td><%= shop.id %></td>
                 <td><%= sale.id %></td>
       <%      sale.transactions.each do |transaction|
-              puts  transaction.amount
+              #puts  transaction.amount
               buffers[:amount] = buffers[:amount] + transaction.amount
 
-              puts  transaction.inventory_item.original_cost
+              #puts  transaction.inventory_item.original_cost
               buffers[:cost] = buffers[:cost] + transaction.inventory_item.original_cost
 
-              puts  (transaction.amount - transaction.inventory_item.original_cost)
+              #puts  (transaction.amount - transaction.inventory_item.original_cost)
               buffers[:revenue] = buffers[:revenue] + (transaction.amount - transaction.inventory_item.original_cost)
 
-              puts transaction.id.to_s + " => buffers  =" + buffers.to_s  %>
+              #puts transaction.id.to_s + " => buffers  =" + buffers.to_s  %>
       <%      end  %>
       <%      buffers[:count] = buffers[:count] + sale.transactions.count  %>
                 <td><%= buffers[:count] %></td>

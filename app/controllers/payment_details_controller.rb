@@ -7,27 +7,29 @@ class PaymentDetailsController < ApplicationController
       redirect_to new_sale_path
     end
     @sale = Sale.find(sale_session.sale_id)
-    #@payment_detail = PaymentDetail.new( payment_detail_params )
-    @payment_detail = PaymentDetail.new(payment: params[:payment_detail][:payment])
-    @payment_detail.sale_id = @sale.id
-    respond_to do |format|
-      if @payment_detail.save
-        sell_inventory_items (@sale)
-        #@sale.destroy_sale_session
-        SaleSession.where(employee_id: current_user.employee_id).destroy_all
-        format.html { redirect_to @sale, notice: 'Venta concluída.' }
-        format.json { render :show, status: :ok, location: @payment_detail }
-        format.js
-      else
-        format.html { render :edit }
-        format.json { render json: @payment_detail.errors, status: :unprocessable_entity }
-        format.js
+    new_payment = params[:payment_detail][:payment].to_f
+    if ( new_payment >= 0 ||  new_payment <= 999999.99  ) then
+      @payment_detail = PaymentDetail.new(payment: new_payment)
+      @payment_detail.sale_id = @sale.id
+      respond_to do |format|
+        if @payment_detail.save
+          sell_inventory_items (@sale)
+          #@sale.destroy_sale_session
+          SaleSession.where(employee_id: current_user.employee_id).destroy_all
+          format.html { redirect_to @sale, notice: 'Venta concluída.' }
+          format.json { render :show, status: :ok, location: @payment_detail }
+          format.js
+        else
+          format.html { render :edit }
+          format.json { render json: @payment_detail.errors, status: :unprocessable_entity }
+          format.js
+        end
       end
     end
   end
 
 
-  def sell_inventory_items (sale)
+  def sell_inventory_items sale
     inventory_items = sale.inventory_items
     inventory_items.each do |item|
       unless item.update(product_status_id: 4) then
