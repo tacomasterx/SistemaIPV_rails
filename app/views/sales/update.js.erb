@@ -1,3 +1,16 @@
-//alert("Post updated");
-//$("#sales_qeue_tables").remove();
-$("#sales_qeue_tables").prepend(" <%= j render 'sales_qeue', sale: @sale, transactions: @transactions %> ");
+<% if @sale.errors.any? %>
+    <%# NOTE COMMENT STEP 4: This removes any error messages that were previously generated. %>
+    document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+    <%# NOTE COMMENT STEP 4: This selects the `<form>` in `app/views/posts/show.html.erb` and dynamically injects the `app/views/shared/_validation-messages.html.erb` partial. %>
+    document.querySelector('#sell-form').insertAdjacentHTML('afterbegin', '<%= escape_javascript(render "partials/validation-messages", object: @sale) %>');
+<% else %>
+    <%# NOTE COMMENT STEP 4: This removes any error messages that were previously generated. %>
+    document.querySelector('#error_explanation') ? document.querySelector('#error_explanation').remove() : null ;
+    <%# NOTE COMMENT STEP 4: This selects `<div id="comments">` in `app/views/posts/show.html.erb` and dynamically injects the `app/views/comments/_comment.html.erb` partial. %>
+    document.querySelector('#colaVenta').insertAdjacentHTML('afterbegin', '<%= escape_javascript(render @sale) %>') ;
+
+    #// TODO: Implemetar la sumatoria via ajax
+
+    <%# NOTE COMMENT STEP 4: This selects the `<form>` in `app/views/posts/show.html.erb` and resets the text area. %>
+    document.querySelector('#sell-form').reset();
+<% end %>

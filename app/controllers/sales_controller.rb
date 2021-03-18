@@ -60,12 +60,12 @@ class SalesController < ApplicationController
           respond_to do |format|
             if @sale.update(amount: sale_amount, discount: sale_discount)
               format.html { redirect_to edit_sale_path(@sale), notice: 'Sale was successfully updated.' }
-              format.json { render :show, status: :ok, location: @sale }
-              #format.js
+              #format.json { render :show, status: :ok, location: @sale }
+              format.js
             else
               format.html { render :edit }
-              format.json { render json: @sale.errors, status: :unprocessable_entity }
-              #format.js
+              #format.json { render json: @sale.errors, status: :unprocessable_entity }
+              format.js
             end
           end
     when '1'
@@ -113,7 +113,7 @@ class SalesController < ApplicationController
       params.require(:sale).permit(:inventory_item_id)
     end
 
-    def get_price (discount, inventory_item)
+    def get_price discount, inventory_item
       product = Product.find( transaction_params[:inventory_item_id] )
       sale_price = product.price_unit+(product.price_unit*product.profit)/100
       return case discount#params[:discount]
@@ -130,7 +130,7 @@ class SalesController < ApplicationController
       end
     end
 
-    def create_transaction (product, price, sale)
+    def create_transaction product, price, sale
       if InventoryItem.where(product_id: product, product_status_id: 1, shop_id: current_user.employee.shop_id).any? then
         inventory_item = InventoryItem.where(product_id: product, product_status_id: 1, shop_id: current_user.employee.shop_id).first
         transaction = sale.transactions.new(amount: price, inventory_item_id: inventory_item.id)
