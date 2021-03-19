@@ -27,7 +27,7 @@
   </div>
 
   <% options = [['Seleccione',0]] %>
-  <% ProductStatus.all.each do |option| %>
+  <% ProductStatus.as_option.each do |option| #ProductStatus.all.each do |option| %>
     <% options.push([option.name,option.id]) %>
   <% end %>
 

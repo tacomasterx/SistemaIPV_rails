@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :product_statuses
   resources :products
   resources :product_types
+
+  get "product_types/:product_types_id/clone", to: "product_types#clone"
   # servidores:
   # rails server
   # ruby .\bin\webpack-dev-server

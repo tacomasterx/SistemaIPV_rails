@@ -1,5 +1,5 @@
 class ProductTypesController < ApplicationController
-  before_action :set_product_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_product_type, only: [:show, :edit, :update, :destroy, :clone]
   before_action :authenticate_user!
 
   # GET /product_types
@@ -22,6 +22,10 @@ class ProductTypesController < ApplicationController
   def edit
   end
 
+  def clone
+
+    @clon = ProductType.new(name: @product_type.name)
+  end
   # POST /product_types
   # POST /product_types.json
   def create
@@ -65,7 +69,7 @@ class ProductTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product_type
-      @product_type = ProductType.find(params[:id])
+      @product_type = ProductType.find(params[:id])# hasdasd
     end
 
     # Only allow a list of trusted parameters through.

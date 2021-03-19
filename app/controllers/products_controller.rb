@@ -8,19 +8,25 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  # GET /products/1
+  # GET /products/1                                     "profit"=>20   ==  profit: 20, price_2: 23
   # GET /products/1.json
   def show
   end
 
   # GET /products/new
   def new
-    @product = Product.new
+    uva = "jamón"
+    @product = Product.new({ "name"=>uva,"profit"=>20, "price_2"=>0.0, "price_3"=>0.0, "price_4"=>0.0, "price_5"=>0.0, "brand"=>"Paper mate"})
   end
 
   # GET /products/1/edit
   def edit
   end
+
+  # def clone
+  #
+  #   @clon = Product.new({ "name"=>@product.name,"profit"=>20, "price_2"=>0.0, "price_3"=>0.0, "price_4"=>0.0, "price_5"=>0.0, "brand"=>"Paper mate"})
+  # end
 
   # POST /products
   # POST /products.json
