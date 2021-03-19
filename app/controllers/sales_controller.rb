@@ -35,6 +35,8 @@ class SalesController < ApplicationController
     @sale = current_user.employee.sales.new(sale_params)
     @sale.shop = current_user.employee.shop
 
+    ###  ABCD00001
+
     respond_to do |format|
       if @sale.save
         @sale.create_sale_session
@@ -59,7 +61,7 @@ class SalesController < ApplicationController
           sale_discount = @sale.discount + (product_price-product_discount)
           respond_to do |format|
             if @sale.update(amount: sale_amount, discount: sale_discount)
-              
+
               format.html { redirect_to edit_sale_path(@sale), notice: 'Sale was successfully updated.' }
               #format.json { render :show, status: :ok, location: @sale }
               format.js

@@ -26,6 +26,7 @@ class ShopsController < ApplicationController
   # POST /shops.json
   def create
     @shop = Shop.new(shop_params)
+    @shop.sku = assign_sku @shop
 
     respond_to do |format|
       if @shop.save
@@ -62,7 +63,22 @@ class ShopsController < ApplicationController
     end
   end
 
+
+
   private
+
+#Invernaderos (id, nombre, direccion, telefono, codigo)
+#Ejemplo (id, sku, invernadero_id)
+
+  def assign_sku asdfasf
+      if Ejemplo.any? then
+        number = Ejemplo.last.id
+        #case number
+        return sku = asdfasf.invernadero.codigo + number.to_s
+      else
+        return sku = asdfasf.invernadero.codigo + 0001.to_s
+      end
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_shop
       @shop = Shop.find(params[:id])
