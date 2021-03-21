@@ -68,6 +68,18 @@ class ProductsController < ApplicationController
     end
   end
 
+  def inflate
+    respond_to do |format|
+      if Product.update_all('price_5 = price_5+1')
+        format.html { redirect_to products_path, notice: 'Product was successfully updated.' }
+        format.json { render :index, status: :ok, location: products_path }
+      else
+        format.html { render :index }
+        #format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

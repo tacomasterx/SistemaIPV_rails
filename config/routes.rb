@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :products
   resources :product_types
 
+  get "product/inflate", to: "products#inflate", as: "products_inflate"
+
   get "product_types/:product_types_id/clone", to: "product_types#clone"
   # servidores:
   # rails server

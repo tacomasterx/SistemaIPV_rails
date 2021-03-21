@@ -18,10 +18,12 @@ class InventoryItemsController < ApplicationController
   # GET /inventory_items/new
   def new
     @inventory_item = InventoryItem.new
+    @transaction = Transaction.new
   end
 
   # GET /inventory_items/1/edit
   def edit
+    @transaction = @inventory_item.transactions.first
   end
 
   # POST /inventory_items

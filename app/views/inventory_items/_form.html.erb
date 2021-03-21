@@ -56,6 +56,16 @@
     <%= form.text_field :original_cost, :readonly => true %>
   </div>
 
+  <%= fields_for :transaction, transaction do |transactions_fields| %>
+    <% puts "\n\n\n\n\n\n"+transaction.sale_id.to_s+"\n\n\n\n\n\n" %>
+    <div class="field">
+      <%= form.label :sale_id %>
+      <%= form.number_field :sale_id, required: 'required' %>
+    </div>
+
+  <% end %>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

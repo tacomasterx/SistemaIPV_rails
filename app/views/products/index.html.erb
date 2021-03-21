@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Products</h1>
+<h1>Products <%= link_to 'Inflar precio 5', products_inflate_path, class: "button button-avg" %></h1> 
 
 <table>
   <thead>
@@ -48,4 +48,4 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'New Product', new_product_path, class: "button button-avg" %>
