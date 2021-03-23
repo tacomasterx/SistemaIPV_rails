@@ -10,14 +10,20 @@
       </ul>
     </div>
   <% end %>
-
-<!-- "asdasdasd" -> object_id
-"asdasdasd" -> object_id
-:simbolo
-Product.new.name -->
+  
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
+  </div>
+
+  <% options = [['Seleccione',0]] %>
+  <% ProductType.all.each do |product| %>
+    <% options.push([product.name,product.id]) %>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :product_type_id %>
+    <%= form.select(:product_type_id, options_for_select(options, @product.product_type_id))  %>
   </div>
 
   <div class="field">
@@ -78,16 +84,6 @@ Product.new.name -->
   <div class="field">
     <%= form.label :sku %>
     <%= form.number_field :sku %>
-  </div>
-
-  <% options = [['Seleccione',0]] %>
-  <% ProductType.all.each do |product| %>
-    <% options.push([product.name,product.id]) %>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :product_type_id %>
-    <%= form.select(:product_type_id, options_for_select(options, @product.product_type_id))  %>
   </div>
 
   <div class="actions">
