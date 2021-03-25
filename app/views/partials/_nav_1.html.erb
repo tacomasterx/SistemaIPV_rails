@@ -95,6 +95,13 @@
 					<%= link_to "Sucursales", shops_path, class: "nav-link" %>
 				<% end %>
 			</li>
+			<li class="nav-item">
+				<% if (params[:controller] == 'test_ap_is') && %w(show new index edit).include?(params[:action]) then %>
+					<%= link_to "Test API", test_apis_path, class: "nav-link active" %>
+				<% else %>
+					<%= link_to "Test API", test_apis_path, class: "nav-link" %>
+				<% end %>
+			</li>
 		</ul>
 	</div>
 	<% unless (params[:controller] == 'sales' ) && %w( edit ).include?(params[:action]) then %>

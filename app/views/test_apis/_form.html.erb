@@ -1,0 +1,38 @@
+<%= form_with(model: test_api, id: 'test-api-form', remote: true) do |form| %>
+  <% if test_api.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(test_api.errors.count, "error") %> prohibited this test_api from being saved:</h2>
+
+      <ul>
+        <% test_api.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fakeId %>
+    <%= form.number_field :fakeId %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_field :body %>
+  </div>
+
+  <div class="field">
+    <%= form.label :userId %>
+    <%= form.number_field :userId %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+    <%= link_to "Fill", new_test_api_path, class: "button button-avg", remote: true %>
+  </div>
+<% end %>

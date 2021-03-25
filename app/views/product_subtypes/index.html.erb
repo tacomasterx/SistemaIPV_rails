@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Product Subtypes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Product type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @product_subtypes.each do |product_subtype| %>
+      <tr>
+        <td><%= product_subtype.name %></td>
+        <td><%= product_subtype.product_type_id %></td>
+        <td><%= link_to 'Show', product_subtype %></td>
+        <td><%= link_to 'Edit', edit_product_subtype_path(product_subtype) %></td>
+        <td><%= link_to 'Destroy', product_subtype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Product Subtype', new_product_subtype_path %>

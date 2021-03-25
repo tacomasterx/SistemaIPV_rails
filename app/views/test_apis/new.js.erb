@@ -1,0 +1,10 @@
+function readJson(json){
+  document.getElementById('test_api_fakeId').value = "" + json.id;
+  document.getElementById('test_api_title').value = "" + json.title;
+  document.getElementById('test_api_body').value = "" + json.body;
+  document.getElementById('test_api_userId').value = "" + json.userId;
+}
+
+fetch('https://jsonplaceholder.typicode.com/posts/'+parseInt(Math.random()*(51-2)) )
+  .then((response) => response.json())
+  .then((json) => readJson(json));

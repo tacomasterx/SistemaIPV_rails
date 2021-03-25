@@ -15,8 +15,9 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    uva = "jamón"
-    @product = Product.new({ "name"=>uva,"profit"=>20, "price_2"=>0.0, "price_3"=>0.0, "price_4"=>0.0, "price_5"=>0.0, "brand"=>"Paper mate"})
+    @product = Product.new()
+    # uva = "jamón"
+    # @product = Product.new({ "name"=>uva,"profit"=>20, "price_2"=>0.0, "price_3"=>0.0, "price_4"=>0.0, "price_5"=>0.0, "brand"=>"Paper mate"})
   end
 
   # GET /products/1/edit
@@ -73,11 +74,17 @@ class ProductsController < ApplicationController
       if Product.update_all('price_5 = price_5+1')
         format.html { redirect_to products_path, notice: 'Product was successfully updated.' }
         format.json { render :index, status: :ok, location: products_path }
+        format.js
       else
         format.html { render :index }
-        #format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.json { render json: Product.last.errors, status: :unprocessable_entity }
+        format.js
       end
     end
+  end
+
+  def select
+
   end
 
   private
@@ -88,6 +95,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :description, :unit, :quantity, :weight, :price_unit, :profit, :price_2, :price_3, :price_4, :price_5, :brand, :sku, :product_type_id)
+      params.require(:product).permit(:name, :description, :unit, :quantity, :weight, :price_unit, :profit, :price_2, :price_3, :price_4, :price_5, :brand, :sku, :product_type_id, :product_subtype_id)
     end
 end

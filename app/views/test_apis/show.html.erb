@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fakeid:</strong>
+  <%= @test_api.fakeId %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @test_api.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @test_api.body %>
+</p>
+
+<p>
+  <strong>Userid:</strong>
+  <%= @test_api.userId %>
+</p>
+
+<%= link_to 'Edit', edit_test_api_path(@test_api) %> |
+<%= link_to 'Back', test_apis_path %>

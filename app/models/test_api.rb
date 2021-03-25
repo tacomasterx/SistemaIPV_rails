@@ -1,0 +1,2 @@
+class TestApi < ApplicationRecord
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_19_045248) do
+ActiveRecord::Schema.define(version: 2021_03_24_232849) do
 
   create_table "ejemplos", force: :cascade do |t|
     t.string "sku"
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 2021_03_19_045248) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "product_subtypes", force: :cascade do |t|
+    t.string "name"
+    t.integer "product_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_type_id"], name: "index_product_subtypes_on_product_type_id"
+  end
+
   create_table "product_types", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -85,6 +93,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_045248) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "product_type_id", null: false
+    t.integer "product_subtype_id", default: 0, null: false
+    t.index ["product_subtype_id"], name: "index_products_on_product_subtype_id"
     t.index ["product_type_id"], name: "index_products_on_product_type_id"
   end
 
@@ -113,6 +123,15 @@ ActiveRecord::Schema.define(version: 2021_03_19_045248) do
     t.string "pseudonym"
     t.string "address"
     t.string "city"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "test_apis", force: :cascade do |t|
+    t.integer "fakeId"
+    t.string "title"
+    t.string "body"
+    t.integer "userId"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -147,6 +166,8 @@ ActiveRecord::Schema.define(version: 2021_03_19_045248) do
   add_foreign_key "inventory_items", "products"
   add_foreign_key "inventory_items", "shops"
   add_foreign_key "payment_details", "sales"
+  add_foreign_key "product_subtypes", "product_types"
+  add_foreign_key "products", "product_subtypes"
   add_foreign_key "products", "product_types"
   add_foreign_key "sale_sessions", "employees"
   add_foreign_key "sale_sessions", "sales"

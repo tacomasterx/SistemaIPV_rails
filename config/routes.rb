@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :test_apis
+  resources :product_subtypes
   #get 'transactions/create', to: "transactions#create"
   #get 'transactions/update', to: "transactions#update"
   resources :sales
@@ -12,8 +14,9 @@ Rails.application.routes.draw do
   resources :product_types
 
   get "product/inflate", to: "products#inflate", as: "products_inflate"
-
+  get "product/select", to: "products#select", as: "products_select"
   get "product_types/:product_types_id/clone", to: "product_types#clone"
+
   # servidores:
   # rails server
   # ruby .\bin\webpack-dev-server

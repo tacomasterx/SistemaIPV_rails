@@ -13,22 +13,22 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, maxlength: 255 %>
   </div>
 
   <div class="field">
     <%= form.label :pseudonym %>
-    <%= form.text_field :pseudonym %>
+    <%= form.text_field :pseudonym, required: true %>
   </div>
 
   <div class="field">
     <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address, required: true %>
   </div>
 
   <div class="field">
     <%= form.label :city %>
-    <%= form.text_field :city %>
+    <%= form.text_field :city, required: true %>
   </div>
 
   <div class="actions">

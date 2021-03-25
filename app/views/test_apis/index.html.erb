@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Test Apis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fakeid</th>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Userid</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @test_apis.each do |test_api| %>
+      <tr>
+        <td><%= test_api.fakeId %></td>
+        <td><%= test_api.title %></td>
+        <td><%= test_api.body %></td>
+        <td><%= test_api.userId %></td>
+        <td><%= link_to 'Show', test_api %></td>
+        <td><%= link_to 'Edit', edit_test_api_path(test_api) %></td>
+        <td><%= link_to 'Destroy', test_api, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Test Api', new_test_api_path %>

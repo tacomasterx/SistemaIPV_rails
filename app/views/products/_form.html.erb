@@ -1,4 +1,4 @@
-<%= form_with(model: product, local: true) do |form| %>
+<%= form_with(model: product, id: "new-product-form",  local: true) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -23,7 +23,26 @@
 
   <div class="field">
     <%= form.label :product_type_id %>
-    <%= form.select(:product_type_id, options_for_select(options, @product.product_type_id))  %>
+    <%= form.select(:product_type_id, options_for_select(options, @product.product_type_id), {}, {:onChange=> "typeSelection(this)" })  %>
+  </div>
+
+  <% options = [['Seleccione',0]] %>
+  <% ProductSubtype.all.each do |product_subtype| %>
+    <% options.push([product_subtype.name,product_subtype.id]) %>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :product_subtype_id, id: "product_subtype_label" %>
+    <% if @product.product_type_id == 0 || @product.product_type_id == nil then %>
+        <%= form.select(:product_subtype_id, options_for_select(options, @product.product_subtype_id ), {}, {
+            :onChange=> "",
+            disabled: true
+         })    %>
+    <% else %>
+        <%= form.select(:product_subtype_id, options_for_select(options, @product.product_subtype_id ), {}, {
+            :onChange=> ""
+         })    %>
+    <% end %>
   </div>
 
   <div class="field">
@@ -32,8 +51,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :unit %>
-    <%= form.text_field :unit %>
+    <%= form.label :unit, id: "product_unit_label", style: "#{'visibility:hidden' if @product.product_type_id == 0 || @product.product_type_id == nil}" %>
+    <%= form.text_field :unit,  style: "#{'visibility:hidden' if @product.product_type_id == 0 || @product.product_type_id == nil}" %>
   </div>
 
   <div class="field">
@@ -87,6 +106,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "button button-avg" %>
+    <%= link_to "Reset", new_product_path, class: "button button-avg", remote: true %>
   </div>
 <% end %>

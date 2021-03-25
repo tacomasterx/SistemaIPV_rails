@@ -20,15 +20,6 @@ class SalesController < ApplicationController
     @transactions = Transaction.new
   end
 
-  # GET /sales/1/edit
-  def edit
-    unless SaleSession.where(employee_id: current_user.employee_id).any? then
-      redirect_to new_sale_path
-    end
-      @transactions = @sale.transactions.all
-      @payment_detail = PaymentDetail.new
-  end
-
   # POST /sales
   # POST /sales.json
   def create
@@ -50,9 +41,18 @@ class SalesController < ApplicationController
     end
   end
 
+  # GET /sales/1/edit
+  def edit #planttrim
+    unless SaleSession.where(employee_id: current_user.employee_id).any? then
+      redirect_to new_sale_path
+    end
+      @transactions = @sale.transactions.all
+      @payment_detail = PaymentDetail.new
+  end
+
   # PATCH/PUT /sales/1
   # PATCH/PUT /sales/1.json
-  def update
+  def update #plant
     product_id = transaction_params[:inventory_item_id].to_i
     product_price =  get_price( '1', product_id )
     product_discount =  get_price( sale_params[:discount], product_id )
