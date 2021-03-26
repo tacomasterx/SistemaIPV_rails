@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_232849) do
+ActiveRecord::Schema.define(version: 2021_03_25_200354) do
 
   create_table "ejemplos", force: :cascade do |t|
     t.string "sku"
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(version: 2021_03_24_232849) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["sale_id"], name: "index_payment_details_on_sale_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.boolean "linked_to_steroids"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "product_statuses", force: :cascade do |t|

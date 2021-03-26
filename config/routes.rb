@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :players
   resources :test_apis
   resources :product_subtypes
   #get 'transactions/create', to: "transactions#create"
@@ -16,6 +17,8 @@ Rails.application.routes.draw do
   get "product/inflate", to: "products#inflate", as: "products_inflate"
   get "product/select", to: "products#select", as: "products_select"
   get "product_types/:product_types_id/clone", to: "product_types#clone"
+  get "product/options", to: "products#options", as: "products_options"
+  get "player/test", to: "players#test", as: "players_test"
 
   # servidores:
   # rails server

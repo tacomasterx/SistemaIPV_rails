@@ -23,18 +23,15 @@
 
   <div class="field">
     <%= form.label :product_type_id %>
-    <%= form.select(:product_type_id, options_for_select(options, @product.product_type_id), {}, {:onChange=> "typeSelection(this)" })  %>
+    <%= form.select(:product_type_id, options_for_select(options, @product.product_type_id), {}, {:onChange=> "" })  %>
   </div>
 
   <% options = [['Seleccione',0]] %>
-  <% ProductSubtype.all.each do |product_subtype| %>
-    <% options.push([product_subtype.name,product_subtype.id]) %>
-  <% end %>
 
   <div class="field">
     <%= form.label :product_subtype_id, id: "product_subtype_label" %>
     <% if @product.product_type_id == 0 || @product.product_type_id == nil then %>
-        <%= form.select(:product_subtype_id, options_for_select(options, @product.product_subtype_id ), {}, {
+        <%= form.select(:product_subtype_id, options_for_select(options, 0 ), {}, {
             :onChange=> "",
             disabled: true
          })    %>
@@ -53,6 +50,8 @@
   <div class="field">
     <%= form.label :unit, id: "product_unit_label", style: "#{'visibility:hidden' if @product.product_type_id == 0 || @product.product_type_id == nil}" %>
     <%= form.text_field :unit,  style: "#{'visibility:hidden' if @product.product_type_id == 0 || @product.product_type_id == nil}" %>
+    <%#= form.label :unit, id: "product_unit_label" %>
+    <%#= form.text_field :unit %>
   </div>
 
   <div class="field">
@@ -110,3 +109,5 @@
     <%= link_to "Reset", new_product_path, class: "button button-avg", remote: true %>
   </div>
 <% end %>
+
+<%= javascript_include_tag "product_options" %>

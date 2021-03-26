@@ -28,6 +28,22 @@ class TestApisController < ApplicationController
 
     respond_to do |format|
       if @test_api.save
+
+        # require 'twilio-ruby'
+        #
+        # account_sid = ''
+        # auth_token = ''
+        # client = Twilio::REST::Client.new(account_sid, auth_token)
+        #
+        # from = '+12674294814' # Your Twilio number
+        # to = '+528991063217' # Your mobile phone number
+        # 
+        # client.messages.create(
+        # from: from,
+        # to: to,
+        # body: "#{@test_api.as_json}"
+        # )
+
         format.html { redirect_to @test_api, notice: 'Test api was successfully created.' }
         #format.json { render :show, status: :created, location: @test_api }
         format.js

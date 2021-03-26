@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  linked_to_steroids: false
+
+two:
+  name: MyString
+  linked_to_steroids: false

@@ -27,6 +27,7 @@ gem 'devise'
 # Gema para los font awesome icono
 gem "font-awesome-rails"
 
+gem 'twilio-ruby'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -13,6 +13,21 @@ class ProductsController < ApplicationController
   def show
   end
 
+  def options
+    product_type_id = params[:product_type_id]
+    # do something with some_parameter and return the results
+    if ProductType.where(id: product_type_id).any? then
+        options = ProductType.where(id: product_type_id).first.product_subtypes
+    else
+        options = ProductSubtype.new()
+    end
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: options }
+    end
+  end
+
   # GET /products/new
   def new
     @product = Product.new()
