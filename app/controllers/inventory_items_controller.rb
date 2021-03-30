@@ -41,9 +41,10 @@ class InventoryItemsController < ApplicationController
       if @inventory_item.save
         if @quantity > 1 then
             (@quantity-1).times do |i|
-              puts "\n\n\n#{i}\n\n\n"
+              #puts "\n\n\n#{i}\n\n\n"
               #@inventory_item.save
               InventoryItem.create( original_cost: @inventory_item.original_cost,  shop_id: @inventory_item.shop_id, product_id: @inventory_item.product_id, product_status_id: @inventory_item.product_status_id, employee_id: @inventory_item.employee_id)
+              activity_log "Agregó #{@quantity} artículos al inventario", @inventory_item.employee_id, Time.now
             end
         end
         format.html { redirect_to @inventory_item, notice: 'Inventory item was successfully created.' }
