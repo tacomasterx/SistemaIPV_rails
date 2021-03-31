@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_234008) do
+ActiveRecord::Schema.define(version: 2020_10_22_213935) do
 
   create_table "employees", force: :cascade do |t|
     t.string "name"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_234008) do
     t.string "name"
     t.string "description"
     t.string "unit"
-    t.integer "quantity"
+    t.float "quantity"
     t.float "weight"
     t.float "price_unit"
     t.integer "profit"

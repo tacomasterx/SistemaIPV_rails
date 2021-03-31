@@ -17,6 +17,10 @@ Rails.application.routes.draw do
 
   post "payment_details/create", to: "payment_details#create"
 
+  ##Revenue
+  get "revenue/", to: "revenue#index"
+
+  ##Home
   get 'home/index', to: "home#index"
   root to: "home#index"
 

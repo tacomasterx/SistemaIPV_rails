@@ -11,14 +11,9 @@
     </div>
   <% end %>
 
-  <% options = [['Seleccione',0]] %>
-  <% Shop.all.each do |option| %>
-    <% options.push([option.name,option.id]) %>
-  <% end %>
-
   <div class="field">
-    <%= form.label :shop_id %>
-    <%= form.select( :shop_id , options_for_select(options, @inventory_item.shop_id)) %>
+    <%= form.label :quantity, "Quantity" %>
+    <%= form.number_field :quantity, in: 1..9999, step: 1 %>
   </div>
 
   <% options = [['Seleccione',0]] %>
@@ -41,20 +36,7 @@
     <%= form.select(:product_status_id, options_for_select(options, @inventory_item.product_status_id))  %>
   </div>
 
-  <% options = [['Seleccione',0]] %>
-  <% Employee.all.each do |option| %>
-    <% options.push([option.name+" "+option.last_name_1,option.id]) %>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :employee_id %>
-    <%= form.select(:employee_id, options_for_select(options, @inventory_item.employee_id)) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :original_cost %>
-    <%= form.text_field :original_cost, :readonly => true %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>

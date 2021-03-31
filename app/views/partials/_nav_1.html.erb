@@ -33,36 +33,67 @@
 	<div class="col-md-3">
 	  <ul class="nav flex-column">
 			<li class="nav-item">
-			<% if current_page?(controller: :home, action: :index) then %>
+			<% if (params[:controller] == 'home') && %w(index).include?(params[:action]) then %>
 				<%= link_to "Inicio", root_path, class: "nav-link active" %>
 			<% else %>
 				<%= link_to "Inicio", root_path, class: "nav-link" %>
 			<% end %>
 			</li>
 			<li class="nav-item">
-				<%= link_to "Vender", new_sale_path, class: "nav-link" %>
+				<% if (params[:controller] == 'sales') && %w(edit new).include?(params[:action]) then %>
+					<%= link_to "Vender", new_sale_path, class: "nav-link active" %>
+				<% else %>
+					<%= link_to "Vender", new_sale_path, class: "nav-link" %>
+				<% end %>
 			</li>
 			<li class="nav-item">
-				<%= link_to "Historial de ventas", sales_path, class: "nav-link" %>
+				<% if (params[:controller] == 'sales') && %w(show index).include?(params[:action]) then %>
+					<%= link_to "Historial de ventas", sales_path, class: "nav-link active" %>
+				<% else %>
+					<%= link_to "Historial de ventas", sales_path, class: "nav-link" %>
+				<% end %>
 		  </li>
 		  <li class="nav-item">
-			<% if (params[:controller] == 'products' || params[:controller] == 'product_types' || params[:controller] == 'product_statuses') && %w(index new edit show).include?(params[:action]) then %>
-				<%= link_to "Productos", products_path, class: "nav-link active" %>
-			<% else %>
-				<%= link_to "Productos", products_path, class: "nav-link" %>
-			<% end %>
+				<% if (params[:controller] == 'products' || params[:controller] == 'product_types' || params[:controller] == 'product_statuses') && %w(index new edit show).include?(params[:action]) then %>
+					<%= link_to "Productos", products_path, class: "nav-link active" %>
+				<% else %>
+					<%= link_to "Productos", products_path, class: "nav-link" %>
+				<% end %>
 			</li>
 			<li class="nav-item">
-				<%= link_to "Inventario", inventory_items_path, class: "nav-link" %>
+				<% if (params[:controller] == 'inventory_items') && %w(show new index edit).include?(params[:action]) then %>
+					<%= link_to "Inventario", inventory_items_path, class: "nav-link active" %>
+				<% else %>
+					<%= link_to "Inventario", inventory_items_path, class: "nav-link" %>
+				<% end %>
 			</li>
 			<li class="nav-item">
-				<%= link_to "Clientes", employees_path, class: "nav-link" %>
+				<% if (params[:controller] == 'revenue') && %w(index).include?(params[:action]) then %>
+					<%= link_to "Utilidades", revenue_path, class: "nav-link active" %>
+				<% else %>
+					<%= link_to "Utilidades", revenue_path, class: "nav-link" %>
+				<% end %>
 			</li>
 			<li class="nav-item">
-				<%= link_to "Empleados", employees_path, class: "nav-link" %>
+				<% if (params[:controller] == 'employees') && %w(show new index edit).include?(params[:action]) then %>
+					<%= link_to "Clientes", employees_path, class: "nav-link" %>
+				<% else %>
+					<%= link_to "Clientes", employees_path, class: "nav-link" %>
+				<% end %>
 			</li>
 			<li class="nav-item">
-				<%= link_to "Sucursales", shops_path, class: "nav-link" %>
+				<% if (params[:controller] == 'employees') && %w(show new index edit).include?(params[:action]) then %>
+					<%= link_to "Empleados", employees_path, class: "nav-link active" %>
+				<% else %>
+					<%= link_to "Empleados", employees_path, class: "nav-link" %>
+				<% end %>
+			</li>
+			<li class="nav-item">
+				<% if (params[:controller] == 'shops') && %w(show new index edit).include?(params[:action]) then %>
+					<%= link_to "Sucursales", shops_path, class: "nav-link active" %>
+				<% else %>
+					<%= link_to "Sucursales", shops_path, class: "nav-link" %>
+				<% end %>
 			</li>
 		</ul>
 	</div>
@@ -81,6 +112,34 @@
 						</li>
 						<li class="nav-item">
 							<%= link_to "Estados de producto", product_statuses_path, class: "nav-link" %>
+						</li>
+				<% elsif (params[:controller] == 'inventory_items') && %w(show new index edit).include?(params[:action]) then %>
+						<li class="nav-item">
+							<%= link_to "Lista", inventory_items_path, class: "nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "Nuevo artículo", new_inventory_item_path, class: "nav-link" %>
+						</li>
+				<% elsif (params[:controller] == 'sales') && %w(show index).include?(params[:action]) then %>
+						<li class="nav-item">
+							<%= link_to "Lista", sales_path, class: "nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "Detalles", sales_path, class: "nav-link" %>
+						</li>
+				<% elsif (params[:controller] == 'employees') && %w(show new index edit).include?(params[:action]) then %>
+						<li class="nav-item">
+							<%= link_to "Lista", employees_path, class: "nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "Nuevo empleado", new_employee_path, class: "nav-link" %>
+						</li>
+				<% elsif (params[:controller] == 'shops') && %w(show new index edit).include?(params[:action]) then %>
+						<li class="nav-item">
+							<%= link_to "Lista", shops_path, class: "nav-link" %>
+						</li>
+						<li class="nav-item">
+							<%= link_to "Nueva sucursal", new_shop_path, class: "nav-link" %>
 						</li>
 				<% end %>
 	 		</ul>

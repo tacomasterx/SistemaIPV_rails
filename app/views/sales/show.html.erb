@@ -1,14 +1,98 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Amount:</strong>
-  <%= @sale.amount %>
+  <strong>Venta número:</strong>
+  <%= @sale.id %>
 </p>
 
 <p>
-  <strong>Discount:</strong>
-  <%= @sale.discount %>
+  <strong>Realizada en:</strong>
+  <% if (@sale.payment_details.any?) then %>
+    <%= @sale.payment_details.last.created_at %>
+  <% else %>
+    <%= @sale.created_at %>
+  <% end %>
 </p>
+
+<p>
+  <strong>Vendida por:</strong>
+  <%= @sale.employee.name + " " + @sale.employee.last_name_1 + " " + @sale.employee.last_name_2 %>
+</p>
+
+<p>
+  <strong>En la sucursal:</strong>
+  <%= @sale.shop.name %>
+</p>
+
+<table  id="colaProductos"  >
+  <thead>
+    <tr>
+      <th >ID del producto</th>
+      <th>Producto</th>
+      <th>ID en nventario</th>
+      <th>Precio</th>
+      <th>Descuento</th>
+      <th>Importe</th>
+    </tr>
+  </thead>
+  <tbody id="colaVenta">
+    <% amount_total = 0 %>
+    <% @sale.transactions.each do |transaction| %>
+    <% sell_price = transaction.inventory_item.product.price_unit + (transaction.inventory_item.product.price_unit * transaction.inventory_item.product.profit)/100 %>
+    <% amount_total += transaction.amount %>
+    <tr>
+      <td><%= transaction.inventory_item.product_id %></td>
+      <td><%= transaction.inventory_item.product.name %></td>
+      <td><%= transaction.inventory_item.id %></td>
+      <td><%= sell_price %></td>
+      <td><%= (sell_price - transaction.amount).round(2) %></td>
+      <td><%= transaction.amount.round(2) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<table id="totales" class="totales">
+  <tr>
+    <td>Subtotal</td>
+    <td id="subtotal">$<%= @sale.amount.round(2) %></td>
+  </tr>
+  <tr>
+    <td>Descuento</td>
+    <td id="totalDescuentos">$<%= @sale.discount.round(2) %></td>
+  </tr>
+  <tr>
+    <td>Total</td>
+    <td id="total">$<%= amount_total.round(2) %></td>
+  </tr>
+  <tr>
+    <td>Pago</td>
+    <td id="pago">$
+      <% if (@sale.payment_details.any?) then %>
+        <%= (@sale.payment_details.last.payment).round(2) %>
+      <% else %>
+        <%= 0.round(2) %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>Cambio</td>
+    <td id="cambio">$
+      <% if (@sale.payment_details.any?) then %>
+        <%= (@sale.payment_details.last.payment - amount_total).round(2) %>
+      <% else %>
+        <%= (0 - amount_total).round(2) %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <%= link_to 'Edit', edit_sale_path(@sale) %> |
 <%= link_to 'Back', sales_path %>

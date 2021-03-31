@@ -6,9 +6,9 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Description</th>
-      <th>Unit</th>
+      <th>Type</th>
       <th>Quantity</th>
+      <th>Unit</th>
       <th>Weight</th>
       <th>Price unit</th>
       <th>Profit</th>
@@ -26,10 +26,10 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= product.name %></td>
-        <td><%= product.description %></td>
-        <td><%= product.unit %></td>
+        <td><%= product.product_type.name %></td>
         <td><%= product.quantity %></td>
-        <td><%= product.weight %></td>
+        <td><%= product.unit %></td>
+        <td><%= product.weight.to_s + "gr" %></td>
         <td><%= product.price_unit %></td>
         <td><%= product.profit %></td>
         <td><%= product.price_2 %></td>

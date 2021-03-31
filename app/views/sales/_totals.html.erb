@@ -1,0 +1,24 @@
+<% amount_total = 0 %>
+<% @sale.transactions.each do |transaction| %>
+    <% amount_total = amount_total + transaction.amount %>
+<% end %>
+<tr>
+  <td>Subtotal</td>
+  <td id="subtotal"><%= @sale.amount.round(2) %></td>
+</tr>
+<tr>
+  <td>Descuento</td>
+  <td id="totalDescuentos"><%= @sale.discount.round(2) %></td>
+</tr>
+<tr>
+  <td>Total</td>
+  <td id="total"><%= amount_total.round(2) %></td>
+</tr>
+<tr>
+  <td>Pago</td>
+  <td id="pago">$0</td>
+</tr>
+<tr>
+  <td>Cambio</td>
+  <td id="cambio"><%= (0 - amount_total).round(2) %></td>
+</tr>

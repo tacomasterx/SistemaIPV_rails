@@ -5,9 +5,9 @@ class InventoryItemsController < ApplicationController
   # GET /inventory_items
   # GET /inventory_items.json
   def index
-    @inventory_items = InventoryItem.all
     # Para el modo inventario de tienda específica
-    # @inventory_items = InventoryItem.where(shop_id: Shop)
+    #@inventory_items = InventoryItem.all
+     @inventory_items = InventoryItem.where(shop_id: current_user.employee.shop_id)
   end
 
   # GET /inventory_items/1
@@ -28,9 +28,22 @@ class InventoryItemsController < ApplicationController
   # POST /inventory_items.json
   def create
     @inventory_item = InventoryItem.new(inventory_item_params)
+    unless( inventory_item_params[:product_id] == '0' || inventory_item_params[:product_id] == nil ) then
+        @inventory_item.original_cost = Product.find(inventory_item_params[:product_id]).price_unit
+    end
+    @inventory_item.shop_id = current_user.employee.shop_id
+    @inventory_item.employee_id = current_user.employee_id
+    @quantity = inventory_item_quantity[:quantity].to_i
 
     respond_to do |format|
       if @inventory_item.save
+        if @quantity > 1 then
+            (@quantity-1).times do |i|
+              puts "\n\n\n#{i}\n\n\n"
+              #@inventory_item.save
+              InventoryItem.create( original_cost: @inventory_item.original_cost,  shop_id: @inventory_item.shop_id, product_id: @inventory_item.product_id, product_status_id: @inventory_item.product_status_id, employee_id: @inventory_item.employee_id)
+            end
+        end
         format.html { redirect_to @inventory_item, notice: 'Inventory item was successfully created.' }
         format.json { render :show, status: :created, location: @inventory_item }
       else
@@ -64,6 +77,11 @@ class InventoryItemsController < ApplicationController
     end
   end
 
+  ###UTILIDADES
+# def revenue
+# end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inventory_item
@@ -72,6 +90,10 @@ class InventoryItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def inventory_item_params
-      params.require(:inventory_item).permit(:original_cost, :shop_id, :product_id, :product_status_id, :employee_id)
+      params.require(:inventory_item).permit( :shop_id, :product_id, :product_status_id, :employee_id)
+    end
+
+    def inventory_item_quantity
+      params.require(:inventory_item).permit( :quantity )
     end
 end
