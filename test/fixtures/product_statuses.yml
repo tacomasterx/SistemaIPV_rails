@@ -1,9 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: "Disponible"
   managable: 1
 
 two:
-  name: MyString
-  managable: 1
+  name: "Retenido"
+  managable: 0
+
+three:
+  name: "Transferido"
+  managable: 0
+
+four:
+  name: "Vendido"
+  managable: 0

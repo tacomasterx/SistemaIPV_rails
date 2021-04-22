@@ -1,31 +1,35 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyString
-  unit: MyString
-  quantity: 
-  weight: 1.5
-  price_unit: 1.5
-  profit: 
-  price_2: 1.5
-  price_3: 1.5
-  price_4: 1.5
-  price_5: 1.5
-  brand: MyString
-  sku: 
+  name: "Sasdawrqwtqw"
+  description: "Asdfg"
+  unit: "pz"
+  quantity: 1.0
+  weight: 1.0 
+  price_unit: 10.0
+  profit: 25
+  price_2: 5.0
+  price_3: 10.0
+  price_4: 25.0
+  price_5: 50.0
+  brand: "Aasdasdas"
+  sku: 234234252636
+  product_type_id: 1
+  product_subtype_id: 1
 
 two:
-  name: MyString
-  description: MyString
-  unit: MyString
-  quantity: 
-  weight: 1.5
-  price_unit: 1.5
-  profit: 
-  price_2: 1.5
-  price_3: 1.5
-  price_4: 1.5
-  price_5: 1.5
-  brand: MyString
-  sku: 
+  name: "Adasdarrars"
+  description: "Asdfg"
+  unit: "pz"
+  quantity: 1.0
+  weight: 1.0 
+  price_unit: 15.0
+  profit: 25
+  price_2: 5.0
+  price_3: 10.0
+  price_4: 25.0
+  price_5: 50.0
+  brand: "Aasdasdas"
+  sku: 234234244636
+  product_type_id: 2
+  product_subtype_id: 2

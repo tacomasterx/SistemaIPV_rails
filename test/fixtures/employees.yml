@@ -1,21 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  last_name_1: MyString
-  last_name_2: MyString
-  rfc: MyString
-  address: MyString
+  name: "Test"
+  last_name_1: ""
+  last_name_2: ""
+  rfc: "test"
+  address: "Testland"
   phone_home: 1
   phone_mobile: 1
-  charge: MyString
+  charge: "test"
+  shop_id: 1
 
 two:
-  name: MyString
-  last_name_1: MyString
-  last_name_2: MyString
-  rfc: MyString
-  address: MyString
+  name: "Josué Roberto"
+  last_name_1: "Zavala"
+  last_name_2: "Obregón"
+  rfc: "zaro234256sdf4"
+  address: "Idolradio 2342 col. Mixlr"
   phone_home: 1
   phone_mobile: 1
-  charge: MyString
+  charge: "The boss"
+  shop_id: 1

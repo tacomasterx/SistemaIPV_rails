@@ -1,7 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  amount: 1.5
+  amount: 12.5
+  sale_id: 1
+  inventory_item_id: 1
 
 two:
-  amount: 1.5
+  amount: 12.5
+  sale_id: 1
+  inventory_item_id: 2
+
+three:
+  amount: 6.25
+  sale_id: 1
+  inventory_item_id: 3
+
+four:
+  amount: 15.0
+  sale_id: 1
+  inventory_item_id: 4

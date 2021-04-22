@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  sku: MyString
+  sku: "MyString"
 
 two:
-  sku: MyString
+  sku: "MyString2"

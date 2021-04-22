@@ -2,12 +2,12 @@
 
 one:
   fakeId: 1
-  title: MyString
-  body: MyString
+  title: "MyString"
+  body: "MyString"
   userId: 1
 
 two:
   fakeId: 1
-  title: MyString
-  body: MyString
+  title: "MyString"
+  body: "MyString"
   userId: 1

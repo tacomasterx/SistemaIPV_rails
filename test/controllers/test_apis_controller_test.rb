@@ -2,6 +2,7 @@ require 'test_helper'
 
 class TestApisControllerTest < ActionDispatch::IntegrationTest
   setup do
+    
     @test_api = test_apis(:one)
   end
 

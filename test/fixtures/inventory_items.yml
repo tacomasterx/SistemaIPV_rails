@@ -1,7 +1,29 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  original_cost: 1.5
+  original_cost: 10.0
+  shop_id: 1
+  product_id: 1
+  product_status_id: 1
+  employee_id: 1
 
 two:
-  original_cost: 1.5
+  original_cost: 10.0
+  shop_id: 1
+  product_id: 1
+  product_status_id: 1
+  employee_id: 1
+
+three:
+  original_cost: 10.0
+  shop_id: 1
+  product_id: 1
+  product_status_id: 1
+  employee_id: 1
+
+four:
+  original_cost: 15.0
+  shop: 1
+  product: 2
+  product_status: 1
+  employee: 1

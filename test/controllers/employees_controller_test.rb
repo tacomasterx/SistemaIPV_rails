@@ -2,6 +2,7 @@ require 'test_helper'
 
 class EmployeesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    Rails.application.load_seed
     @employee = employees(:one)
   end
 
