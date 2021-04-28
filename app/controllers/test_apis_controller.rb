@@ -35,8 +35,8 @@ class TestApisController < ApplicationController
         # auth_token = ''
         # client = Twilio::REST::Client.new(account_sid, auth_token)
         #
-        # from = '+12674294814' # Your Twilio number
-        # to = '+528991063217' # Your mobile phone number
+        # from = '' # Your Twilio number
+        # to = '' # Your mobile phone number
         # 
         # client.messages.create(
         # from: from,
