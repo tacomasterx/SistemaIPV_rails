@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#   Ejecutar cambios en seed:  Rails.application.load_seed
+shop = Shop.create(name: "MATRIZ", pseudonym: "MATRIZ", address: "Matrizlandia 001 col. La Matrix", city:"Zion")
+Employee.create(
+        name: "Invitado",
+        last_name_1: "",
+        last_name_2: "",
+        rfc: "rfc",
+        address: "",
+        phone_home: 0,
+        phone_mobile: 0,
+        charge: "invitado",
+        shop_id: shop.id
+    )
+    
