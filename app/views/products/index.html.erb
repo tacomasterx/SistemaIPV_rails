@@ -10,13 +10,7 @@
       <th>Cantidad</th>
       <th>Unidad</th>
       <th>Peso</th>
-      <th>Costo</th>
-      <th>Ganancia %</th>
       <th>Precio público</th>
-      <th>Precio 2</th>
-      <th>Precio 3</th>
-      <th>Precio 4</th>
-      <th>Precio 5</th>
       <th>Marca</th>
       <th>Sku</th>
       <th colspan="3"></th>
@@ -32,13 +26,7 @@
         <td><%= product.quantity %></td>
         <td><%= product.unit %></td>
         <td><%= product.weight.to_s + "gr" %></td>
-        <td><%= product.price_unit %></td>
-        <td><%= product.profit %></td>
         <td><%= public_price %></td>
-        <td><%= public_price-(product.price_unit*product.price_2/100) %></td>
-        <td><%= public_price-(product.price_unit*product.price_3/100) %></td>
-        <td><%= public_price-(product.price_unit*product.price_4/100) %></td>
-        <td><%= public_price-(product.price_unit*product.price_5/100) %></td>
         <td><%= product.brand %></td>
         <td><%= product.sku %></td>
         <td><%= link_to 'Show', product %></td>

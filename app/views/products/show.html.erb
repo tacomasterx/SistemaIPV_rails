@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<% public_price = @product.price_unit+(@product.price_unit*@product.profit/100) %>
+
 <p>
   <strong>Name:</strong>
   <%= @product.name %>
@@ -31,28 +33,35 @@
 </p>
 
 <p>
+  <strong>Public price:</strong>
+  <%= public_price %>
+</p>
+
+<p>
   <strong>Profit:</strong>
-  <%= @product.profit %>
+  <%= @product.profit %>%
 </p>
 
 <p>
   <strong>Price 2:</strong>
-  <%= @product.price_2 %>
+  <%= @product.price_2 %>%
+  <strong> | </strong>
+  <%= public_price-(@product.price_unit*@product.price_2/100) %>
 </p>
 
 <p>
   <strong>Price 3:</strong>
-  <%= @product.price_3 %>
+  <%= @product.price_3 %>%
 </p>
 
 <p>
   <strong>Price 4:</strong>
-  <%= @product.price_4 %>
+  <%= @product.price_4 %>%
 </p>
 
 <p>
   <strong>Price 5:</strong>
-  <%= @product.price_5 %>
+  <%= @product.price_5 %>%
 </p>
 
 <p>
