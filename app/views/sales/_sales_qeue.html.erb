@@ -34,10 +34,14 @@
     <td>Subtotal</td>
     <td id="subtotal"><%= @sale.amount.round(2) %></td>
   </tr>
-  <tr>
+  <%
+=begin%>
+ <tr>
     <td>Descuento</td>
     <td id="totalDescuentos"><%= @sale.discount.round(2) %></td>
-  </tr>
+  </tr> 
+<%
+=end%>
   <tr>
     <td>Total</td>
     <td id="total"><%= amount_total.round(2) %></td>

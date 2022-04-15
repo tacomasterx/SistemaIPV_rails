@@ -2,13 +2,13 @@
 <div class="container-fluid">
 <div class="row" style="padding-top: 5px;">
 		<div class="col-md-10">
-    <span>
-						<h3><%= image_tag ("logo002.jpg"), height:50  %>
-			      <b id="nombreTienda" style="text-indent: 1cm;"> Papelería Sin Nombre </b>
-						<br>
-            <b id="welcome" style="text-indent: 1cm;">Bienvenido  <%= current_user.employee.name %>  </b>
-						</h3>
-		</span>
+    		<div>
+				<h3><%= image_tag ("logo002.jpg"), height:50  %>
+			    <b id="nombreTienda" style="text-indent: 1cm;"> Papelería Sin Nombre </b>
+				<br>
+				<b id="welcome" style="text-indent: 1cm;">Bienvenido  <%= current_user.employee.name %>  </b>
+				</h3>
+			</div>
 
 		</div>
 		<div class="col-md-2">
@@ -72,13 +72,6 @@
 					<%= link_to "Utilidades", revenue_path, class: "nav-link active" %>
 				<% else %>
 					<%= link_to "Utilidades", revenue_path, class: "nav-link" %>
-				<% end %>
-			</li>
-			<li class="nav-item">
-				<% if (params[:controller] == 'employees') && %w(show new index edit).include?(params[:action]) then %>
-					<%= link_to "Clientes", employees_path, class: "nav-link" %>
-				<% else %>
-					<%= link_to "Clientes", employees_path, class: "nav-link" %>
 				<% end %>
 			</li>
 			<li class="nav-item">
