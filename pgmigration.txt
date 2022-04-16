@@ -1,0 +1,4 @@
+rails db:system:change --to=postgresql
+Overwrite database.yaml? y
+bundle install
+Modificar database.yaml agregar usuarios y contraseñas.

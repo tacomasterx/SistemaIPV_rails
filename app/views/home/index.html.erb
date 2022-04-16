@@ -1,39 +1,20 @@
 
 <p class="titulo-tabla">Ultima venta</p>
 <table class="ultima-venta">
-
-          $sql = "SELECT ventas.id AS venta, COUNT(*) AS vendidos, importe,  (SELECT ventas_id FROM sesion_venta WHERE ventas.empleados_id = sesion_venta.empleados_id)  AS estado
-FROM ventas
-LEFT JOIN transacciones ON ventas_id = ventas.id
-WHERE empleados_id = ".$_SESSION['empleado_id']."
-GROUP BY ventas.id, importe
-ORDER BY fecha DESC LIMIT 1";
-          $result = $conn->query($sql);
-          if ($result->num_rows == 0) {
   <tbody>
-      <tr>
-         <td class="ultima-venta">Número de venta: 0</td>
-         <td class="ultima-venta">Artículos vendidos: 0</td>
-      </tr>
-     <tr>
-       <td class="ultima-venta">Importe: $0.00</td>
-       <td class="ultima-venta">Estado: No disponible</td>
+    <tr>
+         <td class="ultima-venta">Número de venta: <%= @last_sale.id if @last_sale != nil %></td>
+         <td class="ultima-venta">Artículos vendidos: <%= @last_sale.inventory_items.count if @last_sale != nil %></td>
+    </tr>
+    <tr>
+      <td class="ultima-venta">Importe: $<%= @last_sale.amount if @last_sale != nil %></td>
+      <% if @last_sale == nil %>
+        <td class="ultima-venta">Estado: No disponible</td>
+      <% elsif @sale_session %>
+        <td class="ultima-venta">Estado: Pendiente</td>
+      <% else %>
+        <td class="ultima-venta">Estado: Finalizada</td>
+      <% end %>
      </tr>
-  } else {
-    while($row = $result->fetch_assoc()) {
-     <tr>
-       <td class="ultima-venta">Número de venta: '.$row['venta'].'</td>
-       <td class="ultima-venta">Artículos vendidos: '.$row['vendidos'].'</td>
-     </tr>
-     <tr>
-       <td class="ultima-venta">Importe: $'.$row['importe'].'</td>
-    if($row['estado'] == 0 || $row['estado'] == ''){
-             <td class="ultima-venta">Estado: Concretada</td>
-        } else {
-             <td class="ultima-venta">Estado: Pendiente</td>
-        }
-     </tr>
-    }
-  }
   </tbody>
 </table>

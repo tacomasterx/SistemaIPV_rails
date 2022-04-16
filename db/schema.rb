@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2020_10_22_213935) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_16_011340) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "employees", force: :cascade do |t|
     t.string "name"
     t.string "last_name_1"
@@ -22,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2020_10_22_213935) do
     t.string "charge"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "shop_id", default: 1, null: false
+    t.bigint "shop_id", default: 1, null: false
     t.index ["shop_id"], name: "index_employees_on_shop_id"
   end
 
@@ -30,10 +33,10 @@ ActiveRecord::Schema[7.0].define(version: 2020_10_22_213935) do
     t.float "original_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "shop_id", null: false
-    t.integer "product_id", null: false
-    t.integer "product_status_id", null: false
-    t.integer "employee_id", null: false
+    t.bigint "shop_id", null: false
+    t.bigint "product_id", null: false
+    t.bigint "product_status_id", null: false
+    t.bigint "employee_id", null: false
     t.index ["employee_id"], name: "index_inventory_items_on_employee_id"
     t.index ["product_id"], name: "index_inventory_items_on_product_id"
     t.index ["product_status_id"], name: "index_inventory_items_on_product_status_id"
@@ -74,18 +77,18 @@ ActiveRecord::Schema[7.0].define(version: 2020_10_22_213935) do
     t.float "price_4"
     t.float "price_5"
     t.string "brand"
-    t.integer "sku"
+    t.string "sku"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "product_type_id", null: false
+    t.bigint "product_type_id", null: false
     t.index ["product_type_id"], name: "index_products_on_product_type_id"
   end
 
   create_table "sale_sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "employee_id", null: false
-    t.integer "sale_id", null: false
+    t.bigint "employee_id", null: false
+    t.bigint "sale_id", null: false
     t.index ["employee_id"], name: "index_sale_sessions_on_employee_id"
     t.index ["sale_id"], name: "index_sale_sessions_on_sale_id"
   end
@@ -95,8 +98,8 @@ ActiveRecord::Schema[7.0].define(version: 2020_10_22_213935) do
     t.float "discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "employee_id", null: false
-    t.integer "shop_id", null: false
+    t.bigint "employee_id", null: false
+    t.bigint "shop_id", null: false
     t.index ["employee_id"], name: "index_sales_on_employee_id"
     t.index ["shop_id"], name: "index_sales_on_shop_id"
   end
@@ -114,8 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2020_10_22_213935) do
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "sale_id", null: false
-    t.integer "inventory_item_id", null: false
+    t.bigint "sale_id", null: false
+    t.bigint "inventory_item_id", null: false
     t.index ["inventory_item_id"], name: "index_transactions_on_inventory_item_id"
     t.index ["sale_id"], name: "index_transactions_on_sale_id"
   end
@@ -128,7 +131,7 @@ ActiveRecord::Schema[7.0].define(version: 2020_10_22_213935) do
     t.datetime "remember_created_at", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "employee_id", default: 1, null: false
+    t.bigint "employee_id", default: 1, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["employee_id"], name: "index_users_on_employee_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

@@ -28,17 +28,17 @@
 
   <div class="field">
     <%= form.label :quantity %>
-    <%= form.number_field :quantity %>
+    <%= form.number_field :quantity, in:0.000..999999.999, step: 0.01 %>
   </div>
 
   <div class="field">
     <%= form.label :weight %>
-    <%= form.number_field :weight %>
+    <%= form.number_field :weight, in:0.000..999999.999, step: 0.01 %>
   </div>
 
   <div class="field">
     <%= form.label :price_unit %>
-    <%= form.number_field :price_unit %>
+    <%= form.number_field :price_unit, in:0.00..999999.99, step: 0.01 %>
   </div>
 
   <div class="field">
@@ -48,22 +48,22 @@
 
   <div class="field">
     <%= form.label :price_2 %>
-    <%= form.number_field :price_2 %>
+    <%= form.number_field :price_2, in:0.00..999999.99, step: 0.01 %>
   </div>
 
   <div class="field">
     <%= form.label :price_3 %>
-    <%= form.number_field :price_3 %>
+    <%= form.number_field :price_3, in:0.00..999999.99, step: 0.01 %>
   </div>
 
   <div class="field">
     <%= form.label :price_4 %>
-    <%= form.number_field :price_4 %>
+    <%= form.number_field :price_4, in:0.00..999999.99, step: 0.01 %>
   </div>
 
   <div class="field">
     <%= form.label :price_5 %>
-    <%= form.number_field :price_5 %>
+    <%= form.number_field :price_5, in:0.00..999999.99, step: 0.01 %>
   </div>
 
   <div class="field">
@@ -73,7 +73,7 @@
 
   <div class="field">
     <%= form.label :sku %>
-    <%= form.number_field :sku %>
+    <%= form.text_field :sku %>
   </div>
 
   <% options = [['Seleccione',0]] %>

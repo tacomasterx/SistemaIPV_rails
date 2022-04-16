@@ -18,4 +18,19 @@ Employee.create(
         charge: "invitado",
         shop_id: shop.id
     )
-    
+ProductStatus.create(
+    name: "Disponible",
+    managable: 1,
+)
+ProductStatus.create(
+    name: "Retenido",
+    managable: 0,
+)
+ProductStatus.create(
+    name: "Transferido",
+    managable: 0,
+)
+ProductStatus.create(
+    name: "Vendido",
+    managable: 0,
+)
