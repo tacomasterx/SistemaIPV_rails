@@ -7,7 +7,7 @@ ul.nav {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: Green;
+    background-color: #256D85;
     position: -webkit-sticky;
     position: sticky;
 }

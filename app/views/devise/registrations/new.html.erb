@@ -21,9 +21,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
+  <%
+=begin%>
+ <div class="field">
     <%= f.hidden_field :employee_id, value: 1 %>
-  </div>
+  </div> 
+<%
+=end%>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
