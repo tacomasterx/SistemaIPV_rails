@@ -7,6 +7,7 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
     @sales = Sale.all
+    @sales.first.test_dev_environ
   end
 
   # GET /sales/1

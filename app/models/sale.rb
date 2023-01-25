@@ -14,6 +14,10 @@ class Sale < ApplicationRecord
     #SaleSession.where(employee_id: current_user.employee_id).destroy_all
   end
 
+  def test_dev_environ
+    puts "################\n  Funciona!  \n################"
+  end
+
   # def sell_inventory_items
   #   inventory_items = self.inventory_items
   #   inventory_items.each do |item|
